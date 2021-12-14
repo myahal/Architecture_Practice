@@ -1,17 +1,17 @@
-const dbConfig = require('../config/db')
+const userRepository = require('../repository/userRepository')
 
 module.exports = {
   doGetUser: (async () => {
-      const users = await dbConfig.getUsers()
+      const users = await userRepository.getUsers()
       return users
   }),
 
   doPostUser: (async (name, pass) => {
-    return await dbConfig.createUser(name, pass)
+    return await userRepository.createUser(name, pass)
   }),
 
   doLogin: (async (name, pass) => {
-    const user = await dbConfig.getUser(name)
+    const user = await userRepository.getUser(name)
     if (user && user.isValid(pass)) {
       return true
     } else {
