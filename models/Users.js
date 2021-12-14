@@ -15,7 +15,7 @@ class User  {
     return Crypt.compareSync(password, this.hashed_password)
   }
 
-  hash(password) {
+  static hash(password) {
     return Crypt.hashSync(password, 10)
   }
 }

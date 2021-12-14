@@ -1,6 +1,5 @@
 const User = require('../models/Users')
 const pg = require("pg")
-const bcrypt = require('bcrypt')
 
 const pool =  new pg.Pool({
   host: 'localhost',
@@ -45,7 +44,7 @@ const getUser = (async (name) => {
 })
 
 const createUser = (async (name, password) => {
-  const hash_pass = bcrypt.hashSync(password, 10)
+  const hash_pass = User.hash(password)
   const client = await pool.connect()
   try {
     await client.query("BEGIN")
